@@ -53,7 +53,7 @@
 
 ## Ghi chú cá nhân để mang đi thảo luận
 
-Ba thẻ trên là các phương án cá nhân, chưa chốt bài toán chung. Phần deep-dive, sơ đồ chi tiết và quyết định GO / NOT YET / NO-GO sẽ thực hiện khi nhóm thảo luận.
+Ba thẻ trên là các phương án cá nhân, chưa chốt bài toán chung. Tôi đề xuất Card #1 để làm bản deep-dive cá nhân trong `02-deep-dive-report.md`: workflow cụ thể và có thể kiểm thử ranh giới bằng prototype của đề. Card #2 cần danh mục nhóm dịch vụ chuẩn; Card #3 cần quy tắc trách nhiệm theo từng tòa. Nhóm sẽ review các phương án của thành viên trước khi chọn đề tài và tổng hợp bài chung.
 
 Các câu hỏi cần kiểm chứng cho từng thẻ:
 
