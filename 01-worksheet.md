@@ -63,11 +63,11 @@ Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận
 ### 📝 List bài toán của tôi:
 | # | Subsidiary (VinFast/Xanh SM...) | Lens | Mô tả ngắn bài toán |
 |---|----------------------------------|------|---------------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
+| 1 | Xanh SM | Repetitive, Time-consuming | Điều phối viên phải đọc thông tin pin, vị trí, trạng thái chuyến đi và tìm phương án hỗ trợ cho xe điện pin yếu. |
+| 2 | Xanh SM | AI-upgrade, Stakeholder Pain | Soạn phản hồi cho tài xế/khách hàng khi có sự cố như xe hết pin, trễ chuyến, điểm đón sai; nội dung hiện có thể chậm hoặc thiếu nhất quán. |
+| 3 | Xanh SM | Repetitive, Time-consuming | Phân loại phản ánh của khách hàng theo nhóm: thái độ tài xế, vệ sinh xe, trễ chuyến, thanh toán, an toàn. |
+| 4 | VinFast | Repetitive, Time-consuming | Tổng hợp mô tả lỗi xe từ đại lý/call center và phân loại để chuyển đúng bộ phận kỹ thuật.
+| 5 | Vinhomes | Time-consuming, Stakeholder Pain | Phân loại phản ánh cư dân và soạn bản nháp phản hồi cho ban quản lý theo loại sự cố và mức độ ưu tiên. |
 
 ---
 
@@ -77,24 +77,104 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #___                                     │
+│ QUICK PROBLEM CARD #1 - Hỗ trợ xe điện pin nguy cấp         │
 │                                                             │
-│ Bài toán (1 câu): ________________________________________  │
-│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
+│ Bài toán (1 câu): Điều phối viên cần nhanh chóng xác định   |
+| hướng xử lý an toàn khi tài xế Xanh SM báo xe có mức pin    |
+| rất thấp.                                                   │
+|                                                             |
+│ Công ty thành viên: [ ] VinFast  [X] Xanh SM  [ ] Vinhomes  │
 │                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
 │                                                             │
-│ Ai đang đau (Actor)? ______________________________________ │
+│ Ai đang đau (Actor)? Điều phối viên, tài xế                 │
 │                                                             │
 │ Workflow thủ công hiện tại (3-5 bước):                      │
-│   1. ___ ──> 2. ___ ──> 3. ___ ──> 4. ___                   │
+│   1. Nhận cuộc gọi/tin nhắn báo pin yếu                     |
+|   2. Hỏi hoặc tra cứu mức pin, vị trí GPS, mã xe            |
+|   và trạng thái chuyến.                                     |
+|   3. Kiểm tra phương án hỗ trợ và khoảng cách               |
+|   trạm sạc/đội hỗ trợ.                                      |
+|   4. Trao đổi với bộ phận điều phối hoặc cứu hộ.            |
+|   5. Soạn phản hồi và thông báo cho tài xế.                 |
 │                                                             │
-│ Bước nào tốn thời gian/lỗi nhất? ___ (⏱ ___ phút/lượt)      │
-│ AI có thể nhảy vào hỗ trợ ở bước nào? _____________________ │
+│ Bước nào tốn thời gian/lỗi nhất? 3 (⏱ 5-10 phút/lượt)       │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Tóm tắt nội dung báo  | 
+| sự cố, trích xuất thông tin có trong yêu cầu và tạo         |
+| bản nháp phản hồi.                                          │
 │                                                             │
-│ Đo thành công bằng gì (Metric có số)? ______________________ │
-│   VD: "Giảm thời gian soạn phản hồi từ 10 min ──> under 2 min"│
+│ Đo thành công bằng gì (Metric có số)?                       |
+|  1. Giảm thời gian tạo bản nháp từ baseline giả định 5–10   |
+| phút xuống dưới 2 phút                                      |
+|  2. 100% trường hợp pin dưới 5% không được gợi ý trạm sạc   | 
+|  3. 100% hành động cần người duyệt.                         │
 │                                                             │
-│ Quick Architecture: [ ] No AI  [ ] Rule  [ ] LLM  [ ] Agent │
+│                                                             │
+│ Quick Architecture: [ ] No AI  [X] Rule  [X] LLM  [ ] Agent │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #2 - Phân loại phản ánh khách hàng       │
+│                                                             │
+│ Bài toán (1 câu): Tự động phân loại phản ánh khách hàng     |
+| để chuyển đúng nhóm xử lý.                                  |
+|                                                             |
+│ Công ty thành viên: [ ] VinFast  [X] Xanh SM  [ ] Vinhomes  │
+│                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
+│                                                             │
+│ Ai đang đau (Actor)? Nhân viên chăm sóc khách hàng và       |
+| trưởng nhóm vận hành.                                       │
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                      │
+│   1. Nhận phản ánh từ ứng dụng/call center.                 |
+|   2. Đọc nội dung và xác định chủ đề.                       |
+|   3. Xác định mức độ ưu tiên.                               |
+|   4. Chuyển ticket đến nhóm phụ trách.                      |
+|   5. Theo dõi trạng thái xử lý.                             │
+│                                                             │
+│ Bước nào tốn thời gian/lỗi nhất? 2 (⏱ 10-15 phút/lượt)      │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Gợi ý category,       |
+| priority và tóm tắt ticket; nhân viên xác nhận trước        |
+| khi chuyển.                                                 │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                       |
+|  1. Ít nhất 90% ticket được gợi ý đúng category trong       |
+| tập kiểm thử được gán nhãn                                  |
+|  2. thời gian phân loại trung vị dưới 30 giây.              │
+│                                                             │
+│                                                             │
+│ Quick Architecture: [ ] No AI  [X] Rule  [X] LLM  [ ] Agent │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #3 - Soạn phản hồi sự cố cho tài xế      │
+│                                                             │
+│ Bài toán (1 câu): Tạo bản nháp phản hồi ngắn gọn, nhất quán |
+| cho tài xế khi phát sinh sự cố vận hành.                    |
+|                                                             |
+│ Công ty thành viên: [ ] VinFast  [X] Xanh SM  [ ] Vinhomes  │
+│                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
+│                                                             │
+│ Ai đang đau (Actor)? Nhân viên điều phối và chăm sóc tài xế.│
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                      │
+│   1. Nhận thông tin sự cố.                                  |
+|   2. Kiểm tra dữ liệu liên quan.                            |
+|   3. Tìm mẫu phản hồi phù hợp.                              |
+|   4. Chỉnh sửa nội dung theo tình huống.                    |
+|   5. Gửi sau khi được duyệt.                                │
+│                                                             │
+│ Bước nào tốn thời gian/lỗi nhất? Viết lại nội dung và       |
+| bảo đảm không đưa ra cam kết hoặc thông tin chưa xác minh.  │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Soạn bản nháp dựa     |
+| trên dữ liệu đã xác minh, không tự gửi.                     │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                       |
+|  1. 90% bản nháp được nhân viên chấp nhận sau tối đa        |
+| một lần chỉnh sửa                                           |
+|  2. Không có bản nháp nào tự động được gửi.                 │
+│                                                             │
+│                                                             │
+│ Quick Architecture: [ ] No AI  [X] Rule  [X] LLM  [ ] Agent │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -113,17 +193,21 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 * 🔄 **Handoff:** Điểm chuyển giao thông tin giữa người và hệ thống, hoặc giữa các bộ phận.
 * Ghi rõ thời gian vận hành trung bình: **Tổng cộng = ____ phút/lượt**.
 
+![Current-State Workflow](images/Current-StateWorkflow.jpg)
+
+**Tổng cộng = 22 phút/lượt**
+
 ## 3.2. Problem Statement (6-field) & Metrics (15 min)
 Điền đầy đủ 6 trường thông tin của bài toán:
 
 | Field | Nội dung chi tiết |
 |---|---|
-| **1. Actor / Operator** | Ai đang thực hiện tác vụ hằng ngày? |
-| **2. Current Workflow** | Mô tả tóm tắt quy trình thủ công hiện tại và công cụ sử dụng. |
-| **3. Bottleneck** | Bước nào chậm, lỗi, hoặc cần xử lý ngôn ngữ tự động nhiều nhất? |
-| **4. Business Impact** | Tổn thất thực tế đo bằng thời gian, chi phí, hoặc SLA của Vingroup. |
-| **5. Success Metric** | AI giải quyết được thì đạt ngưỡng số mấy? (Ví dụ: *"85% vé được phân loại dưới 10s"*). |
-| **6. Operational Boundary** | AI được phép làm gì, TUYỆT ĐỐI không được làm gì, điểm nào cần duyệt? |
+| **1. Actor / Operator** | Điều phối viên Xanh SM tiếp nhận và xử lý báo cáo xe điện pin yếu từ tài xế. |
+| **2. Current Workflow** | Tiếp nhận tin nhắn/cuộc gọi → hỏi thông tin xe, pin và vị trí → tra cứu trạm sạc/đội hỗ trợ → chọn phương án → trao đổi với bộ phận liên quan → soạn phản hồi và theo dõi. |
+| **3. Bottleneck** | Thông tin đầu vào không đồng nhất; phải đối chiếu nhiều nguồn; nguy cơ đề xuất trạm sạc không phù hợp khi pin nguy cấp. |
+| **4. Business Impact** | Có thể làm tăng thời gian xử lý sự cố, kéo dài thời gian gián đoạn hoạt động của xe, ảnh hưởng trải nghiệm tài xế/khách hàng và tăng tải cho điều phối viên. Cần thu thập log để định lượng chi phí thực tế. |
+| **5. Success Metric** | Pilot đề xuất: giảm thời gian tạo bản nháp xuống dưới 2 phút; 100% tình huống pin <5% bị chặn gợi ý trạm sạc; 100% phản hồi ở trạng thái draft và cần người duyệt; tỷ lệ JSON hợp lệ ≥99% trên bộ test. Các ngưỡng là mục tiêu thử nghiệm, cần hiệu chỉnh theo baseline. |
+| **6. Operational Boundary** | AI chỉ tóm tắt thông tin và tạo bản nháp. Không gửi tin nhắn, không điều xe, không đặt trạm, không tự xác nhận dữ liệu GPS/pin/trạm. Nếu pin <5%, backend rule phải chặn gợi ý trạm và đề xuất quy trình hỗ trợ di động để dispatcher xem xét. Nếu thiếu dữ liệu hoặc API lỗi, yêu cầu xác minh/thực hiện quy trình thủ công. Mọi hành động cần human approval. |
 
 ## 3.3. Future-State Flow & AI Fit (25 min)
 * **Xác định mức AI Fit (AI-Fit Matrix):** Giải pháp thuộc nhóm nào? [ ] Rule / State-Machine [ ] LLM Feature [ ] Agentic Loop.
@@ -132,6 +216,15 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
   * 🟢 **Human Step (HITL):** Bước con người phê duyệt/review (Human-in-the-loop).
   * ↩️ **Fallback:** Kế hoạch dự phòng khi LLM trả về kết quả lỗi hoặc không tự tin.
 
+**AI-Fit Matrix**
+| Phương án | Vai trò | Đánh giá |
+|---|---|---|
+| Rule / State Machine | Kiểm tra ngưỡng pin, dữ liệu bắt buộc, khoảng cách và điều kiện cho phép | **Bắt buộc** cho các quyết định an toàn có điều kiện rõ ràng |
+| LLM Feature | Hiểu nội dung tự nhiên, trích xuất thông tin được cung cấp, tóm tắt và soạn bản nháp | Phù hợp để hỗ trợ dispatcher |
+| Agentic Loop | Tự gọi công cụ, tự điều phối xe hoặc gửi tin | **Không phù hợp trong scope prototype** vì có rủi ro hành động ngoài đời thực |
+
+**Future-State Flow**  
+![Future-State Flow](images/Future-StateFlow.jpg)
 ---
 
 # 💻 Phase 4 — TECHNICAL PROMPT PROTOTYPE (Nhóm, 30 min)
@@ -156,16 +249,20 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 
 ### AI Readiness Checklist:
 1. [ ] Chúng tôi có sẵn dữ liệu mẫu/logs sạch để test?
-2. [ ] Rủi ro khi AI sai có nằm trong tầm kiểm soát (qua HITL hoặc Fallback)?
+2. [X] Rủi ro khi AI sai có nằm trong tầm kiểm soát (qua HITL hoặc Fallback)?
 3. [ ] Stakeholders sẵn sàng thay đổi quy trình làm việc cũ?
 
 ### Quyết định cuối cùng của Ban Giám Đốc Vin Smart Future:
-[ ] **GO (Bắt đầu xây dựng Prototype):** Bắt đầu phát triển với scope hẹp.
-[ ] **NOT YET (Cần tích lũy thêm dữ liệu/xác lập baseline):** Trì hoãn để chuẩn bị thêm.
+[ ] **GO (Bắt đầu xây dựng Prototype):** Bắt đầu phát triển với scope hẹp.  
+[X] **NOT YET (Cần tích lũy thêm dữ liệu/xác lập baseline):** Trì hoãn để chuẩn bị thêm.  
 [ ] **NO-GO (Không khả thi / Rule-based tốt hơn):** Hủy bỏ dự án AI này.
 
 **Justification (Lý giải quyết định dựa trên bằng chứng kỹ thuật và chi phí):**
-> *Viết lý giải chi tiết tại đây*
+- Bài toán có tiềm năng vì LLM có thể hỗ trợ đọc báo cáo tự nhiên, tóm tắt và tạo bản nháp nhanh.
+- Quy tắc an toàn như ngưỡng pin dưới 5% có thể biểu diễn bằng code thông thường; không nên giao quyền quyết định này cho LLM.
+- Chưa có dữ liệu baseline, log vận hành, tỷ lệ lỗi hiện tại hoặc xác nhận từ stakeholder để chứng minh hiệu quả kinh doanh.
+- Model API có thể lỗi/quá tải; cần fallback không phụ thuộc LLM.
+- Chưa đủ bằng chứng để triển khai thật. Có thể tiếp tục prototype offline với dữ liệu giả lập/đã ẩn danh, bộ test adversarial và human review.
 
 ---
 
