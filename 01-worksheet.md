@@ -193,7 +193,7 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 * 🔄 **Handoff:** Điểm chuyển giao thông tin giữa người và hệ thống, hoặc giữa các bộ phận.
 * Ghi rõ thời gian vận hành trung bình: **Tổng cộng = ____ phút/lượt**.
 
-![Current-State Workflow](images/Current-StateWorkflow.jpg)
+![Current-State Workflow](04-workflow-diagram.jpg)
 
 **Tổng cộng = 22 phút/lượt**
 
