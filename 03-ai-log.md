@@ -20,6 +20,9 @@ Ghi lại trung thực việc dùng AI làm **thought-partner**: AI đã giúp g
 | 6 | Viết lại theo bài #12 + tương tác | Viết lại mọi md và cập nhật `.py` | Viết prototype mới; lần đầu log mẫu có chữ "Failed" và các test dùng khóa `request` | Sửa chữ "Failed" trước khi chạy; khi chạy autograder thì được 4/5 do khóa `request` và thiếu từ khóa `5%` | Sửa khóa thành `input`, thêm rule về điều chỉnh điểm nhỏ → **5/5** |
 | 7 | Hỏi về card và điểm | Hỏi vì sao chưa thấy card; chấm thử | Card để dạng bảng markdown, không giống khung của bản mẫu; chạy autograder được 8.75/10 (thiếu `04-workflow-diagram`) | Đổi 3 card sang khung ``` ┌─┐ ``` | Card hiển thị đúng khung mẫu |
 | 8 | Hỏi về VinUniversity | Hỏi vì sao VinUniversity bị coi là ngoài Vingroup | **AI đã viết sai: xếp VinUniversity vào "khác" và tính rủi ro theo đó.** `03-inspiration-kit.md` mục 3 đưa VinUni vào cùng bảng với các công ty thành viên | Đã thừa nhận; tăng ước tính I1 từ ~12–14 lên ~14–15 | Không đổi bài toán |
+| 9 | Vẽ sơ đồ và sửa số liệu | Vẽ `04-workflow-diagram`; tìm số liệu có nguồn; sửa con số | AI vẽ bằng SVG rồi chụp bằng Chrome headless; tìm nguồn bằng WebSearch (chỉ đọc tóm tắt, chưa đọc toàn văn) | AI ghi "13 phút phía trợ giảng", nhưng 2 phút là autograder chạy máy. Đã sửa thành 11 phút (người làm), 13 phút (tổng) | Sơ đồ đạt yêu cầu; nguồn ghi rõ là tóm tắt cần kiểm tra lại |
+| 10 | Chạy thử và `.env` | Chạy prototype với model thật; thêm chỗ nhập key | Chạy được 7/7 với Claude; `.env` đã gitignore, không đưa key vào commit | Chưa test Gemini vì chưa có key | Chờ key Gemini |
+| 11 | Push lên nhánh cá nhân | Commit và push | `git add` lỗi vì một file đã không còn, commit không tạo được; lệnh push chạy sau đó tạo nhánh remote trỏ vào commit cũ | Commit lại đúng các file và push | Nhánh remote có nội dung đúng |
 
 ---
 
@@ -48,11 +51,11 @@ Ghi lại trung thực việc dùng AI làm **thought-partner**: AI đã giúp g
 ## 5. Tôi đã sửa gì
 
 - Viết lại prototype cho bài #12: 3 adversarial test có kiểm tra bằng code; chế độ hỏi đáp gợi ý nhiều cấp trên máy tính (`--interactive`).
-- Giữ bản Xanh SM cũ tại `starter-code/prompt_prototype_xanhsm.py` để không mất công việc trước đó.
+- Sao lưu bản Xanh SM cũ thành `starter-code/prompt_prototype_xanhsm.py`. Khi nộp, file này không còn trong repo nên không đưa vào commit.
 - Viết lại `01-problem-scan.md`, `02-deep-dive-report.md` và `03-ai-log.md` cho bài #12.
 - Đổi 3 card trong `01-problem-scan.md` sang khung giống bản mẫu.
 - Ghi nhận lại việc VinUniversity thuộc hệ sinh thái Vingroup và sửa ước tính I1 (mục 2, dòng 8).
-- Chưa làm: `04-workflow-diagram` (ảnh hoặc PDF). Hiện autograder thiếu 1.25 điểm vì file này.
+- Đã làm `04-workflow-diagram.png`: sơ đồ swimlane gồm 4 làn, 6 bước, 2 bottleneck, 4 handoff và một vòng lặp. Autograder phần A đủ 4 file.
 ---
 
 ## 6. Phản ánh cá nhân

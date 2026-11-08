@@ -48,7 +48,7 @@ Chọn top 3: **#6 (chấm bài và giải thích lỗi)** là bài chính; **#1
 │   nhân ──> 3. Đối chiếu rubric, viết góp ý ──> 4. Ghi điểm, gửi      │
 │   ──> 5. Sinh viên hỏi lại qua kênh khác khi chưa hiểu               │
 │                                                                      │
-│ Bước nào tốn thời gian/lỗi nhất? Bước 2–3 (⏱ ~10 phút/bài, giả định) │
+│ Bước nào tốn thời gian/lỗi nhất? Bước 3–4 (⏱ ~10 phút/bài, giả định) │
 │ AI có thể nhảy vào hỗ trợ ở bước nào?                                │
 │   (a) Agent đọc log và code bằng tool hạn chế, chẩn đoán loại lỗi;   │
 │   (b) LLM soạn nháp theo gợi ý cấp 1 → 2 → 3;                        │
