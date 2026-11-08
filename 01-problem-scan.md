@@ -1,3 +1,6 @@
+# Họ tên: Đào Huy Hoàng
+# MSHV: 2A202603451
+
 # 🔍 Phase 1 — SCAN (Cá nhân, 20 min)
 
 Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận hành của các công ty thành viên Vingroup. Ghi lại **ít nhất 5 bài toán/bottleneck** thực tế.
